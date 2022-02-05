@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Aug  2 20:31:18 2021
+
+@author: USER
+"""
+
+"""
+放上來的時間:
+5 Feb 2022
+"""
+##好奇高雄三民區土石災害處，發現根本不，其實在林園...##
+import geopandas as gpd 
+import pandas as pd
+
+##叫出資料
+mapo=gpd.read_file(r"D:/GIS/歷年重大土石災例分布圖_UTF8")
+line=gpd.read_file(r"D:/GIS/mapdata202107290959村里/VILLAGE_MOI_1100714.shp",encoding="utf-8")
+
+##限定區域，座標統一
+which=mapo[mapo["Town"]=="三民區"] #土石災害點
+line_k=line[line["COUNTYNAME"]=="高雄市"]
+line_k=line_k.to_crs(epsg=3826)
+##(5 雖然說是座標統一，但是我怎麼看不到另一個的座標?)
+line_v=line_k[line_k["TOWNNAME"]=="林園區"] #找出林園區
+
+#重疊結果
+figa=line_v.plot() #林園區為底圖
+which.plot(ax=figa,color="forestgreen") 
+
+
+
