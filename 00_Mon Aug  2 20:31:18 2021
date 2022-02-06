@@ -21,6 +21,8 @@ line=gpd.read_file(r"D:/GIS/mapdata202107290959村里/VILLAGE_MOI_1100714.shp",e
 which=mapo[mapo["Town"]=="三民區"] #土石災害點
 line_k=line[line["COUNTYNAME"]=="高雄市"]
 line_k=line_k.to_crs(epsg=3826)
+
+
 ##(5 雖然說是座標統一，但是我怎麼看不到另一個的座標?)
 line_v=line_k[line_k["TOWNNAME"]=="林園區"] #找出林園區
 
